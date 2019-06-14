@@ -1,9 +1,10 @@
 package com.msa.converse.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -11,26 +12,37 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    private String sentTo;
     private String text;
-
     private Date timeSent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
 
     public Comment() { }
 
-    public Comment(String text) {
+    public Comment(String sentTo, String text, User user) {
+        this.sentTo = sentTo;
         this.text = text;
+        this.user = user;
         this.timeSent = new Date();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
+
+    public String getSentTo() { return sentTo; }
+
+    public void setSentTo(String sentTo) { this.sentTo = sentTo; }
 
     public String getText() {
         return text;
@@ -46,5 +58,13 @@ public class Comment {
 
     public void setTimeSent(Date timeSent) {
         this.timeSent = timeSent;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
