@@ -25,9 +25,9 @@ public class ConverseApplication {
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
-			User jason = new User("Jason");
+			User jason = new User("Jason", "jason@yahoo", "jasonpassword");
 			userRepository.save(jason);
-			User johnny = new User("Johnny");
+			User johnny = new User("Johnny", "johnny@gmail", "johnnypassword ");
 			userRepository.save(johnny);
 			commentRepository.save(new Comment("Johnny", "What's the deal?", jason));
 			commentRepository.save(new Comment("Jason", "I can't call it. Just maxing", johnny));

@@ -8,4 +8,8 @@ public interface CrudService<T> {
     List<?> listAll();
 
     Optional<T> getById(Long id);
+
+    T saveOrUpdate(T domainObject);
+
+    void delete(Long id);
 }

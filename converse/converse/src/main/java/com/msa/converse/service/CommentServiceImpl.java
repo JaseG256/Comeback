@@ -25,6 +25,16 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Comment saveOrUpdate(Comment comment) {
+        return commentRepository.save(comment);
+    }
+
+    @Override
+    public void delete(Long id) {
+        commentRepository.deleteById(id);
+    }
+
+    @Override
     public List<Comment> findBySentTo(String sentTo) {
         return commentRepository.findBySentTo(sentTo);
     }
