@@ -90,12 +90,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 //                .antMatchers("/uploadFile", "/uploadMultipleFiles", "/downloadFile/**")
 //                .permitAll()
-                .antMatchers(HttpMethod.GET, "api/", "/api/**", "/api/users/**")
-                .permitAll()
+//                .antMatchers(HttpMethod.GET, "api/", "/api/**", "/api/users/**")
+//                .permitAll()
 //                .antMatchers(HttpMethod.GET, "/id", "api/users/**")
 //                .permitAll()
                 .anyRequest()
-                .authenticated();
+                .permitAll();
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

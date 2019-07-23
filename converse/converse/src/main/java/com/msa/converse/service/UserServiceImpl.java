@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
     public User saveOrUpdate(User domainObject) {
         return userRepository.save(domainObject);
     }
+
     @Override
     @Transactional
     public void delete(Long id) {

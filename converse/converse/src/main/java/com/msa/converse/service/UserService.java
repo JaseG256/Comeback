@@ -9,6 +9,12 @@ public interface UserService extends CrudService<User> {
 
     List<User> listAll();
 
+    Optional<User> getById(Long id);
+
+    User saveOrUpdate(User domainObject);
+
+    void delete(Long id);
+
     Optional<User> findByEmail(String email);
 
     Optional<User> findByUsernameOrEmail(String username, String email);
